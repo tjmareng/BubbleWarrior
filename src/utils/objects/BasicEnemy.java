@@ -1,9 +1,10 @@
-package utils.objects;
+package src.utils.objects;
 
 import java.awt.Color;
 import java.awt.Graphics;
 
 import src.Main;
+import src.utils.objects.*;
 
 public class BasicEnemy extends GameObject {
 

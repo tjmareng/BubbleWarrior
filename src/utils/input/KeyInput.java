@@ -1,7 +1,11 @@
+package src.utils.input;
+
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-import javax.swing.JFrame;
+import src.utils.objects.GameObject;
+import src.utils.objects.ID;
+import src.utils.rendering.Handler;
 
 public class KeyInput extends KeyAdapter {
 
@@ -14,8 +18,8 @@ public class KeyInput extends KeyAdapter {
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
 
-		for (int i = 0; i < handler.list.size(); i++) {
-			GameObject tempObject = handler.list.get(i);
+		for (int i = 0; i < handler.getList().size(); i++) {
+			GameObject tempObject = handler.getList().get(i);
 
 			if (tempObject.getID() == ID.Player) {
 				// key events for player 1
@@ -44,8 +48,8 @@ public class KeyInput extends KeyAdapter {
 	public void keyReleased(KeyEvent e) {
 		int key = e.getKeyCode();
 
-		for (int i = 0; i < handler.list.size(); i++) {
-			GameObject tempObject = handler.list.get(i);
+		for (int i = 0; i < handler.getList().size(); i++) {
+			GameObject tempObject = handler.getList().get(i);
 
 			if (tempObject.getID() == ID.Player) {
 				// key events for player 1

@@ -1,4 +1,4 @@
-package utils.threads;
+package src.utils.threads;
 
 import java.util.LinkedList;
 import java.util.List;

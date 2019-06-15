@@ -1,7 +1,9 @@
-package src;
+package src.utils.rendering;
 
 import java.awt.Color;
 import java.awt.Graphics;
+
+import src.Main;
 
 public class HUD {
 

@@ -1,18 +1,13 @@
 package src;
 
-import java.awt.Canvas;
-import java.awt.Color;
-import java.awt.Graphics;
+import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.util.Random;
 
-import utils.input.KeyInput;
-import utils.objects.BasicEnemy;
-import utils.objects.ID;
-import utils.objects.Player;
-import utils.rendering.Handler;
-import utils.threads.ThreadPool;
-import utils.threads.ThreadTest;
+import src.utils.input.*;
+import src.utils.threads.*;
+import src.utils.rendering.*;
+import src.utils.objects.*;
 
 /**
  * This class is the main class for running the game
@@ -36,8 +31,8 @@ public class Main extends Canvas implements Runnable {
 		_hud = new HUD();
 		r = new Random();
 
-		_handler.addObject(new Player(WIDTH / 2 - 32, HEIGHT / 2 - 32, ID.Player));
-		_handler.addObject(new BasicEnemy(WIDTH / 2 - 32, HEIGHT / 2 - 32, ID.BasicEnemy));
+		_handler.addObject(new Player(WIDTH / 2 - 32, HEIGHT / 2 - 32, src.utils.objects.ID.Player));
+		_handler.addObject(new BasicEnemy(WIDTH / 2 - 32, HEIGHT / 2 - 32, src.utils.objects.ID.BasicEnemy));
 	}
 
 	public synchronized void start() {

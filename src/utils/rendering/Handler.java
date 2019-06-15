@@ -1,9 +1,9 @@
-package utils.rendering;
+package src.utils.rendering;
 
 import java.awt.Graphics;
 import java.util.LinkedList;
 
-import utils.objects.GameObject;
+import src.utils.objects.GameObject;
 
 public class Handler {
 

@@ -1,4 +1,4 @@
-package utils.threads;
+package src.utils.threads;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;

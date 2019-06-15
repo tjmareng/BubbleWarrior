@@ -1,4 +1,4 @@
-package utils.objects;
+package src.utils.objects;
 
 import java.awt.Graphics;
 

@@ -1,44 +1,55 @@
+package src;
+
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.util.Random;
 
+import utils.input.KeyInput;
+import utils.objects.BasicEnemy;
+import utils.objects.ID;
+import utils.objects.Player;
+import utils.rendering.Handler;
+import utils.threads.ThreadPool;
+import utils.threads.ThreadTest;
+
+/**
+ * This class is the main class for running the game
+ */
 public class Main extends Canvas implements Runnable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -4701693684670803303L;
-	public static final int WIDTH = 640, HEIGHT = WIDTH / 12 * 9;
-	private Thread thread;
+	public static final int WIDTH = 1280, HEIGHT = WIDTH / 12 * 9; // Adjusts window size
 	private boolean running = false;
-	private Handler handler;
+	private ThreadPool _thread;
+	private Handler _handler;
+	private HUD _hud;
 	private Random r;
-	private HUD hud;
 
 	public Main() {
-		handler = new Handler();
-		this.addKeyListener(new KeyInput(handler));
-		
-		new Window(WIDTH, HEIGHT, "Let's Build a Game!", this);
+		_handler = new Handler();
+		this.addKeyListener(new KeyInput(_handler));
 
-		hud = new HUD();
+		new Window(WIDTH, HEIGHT, "Game", this);
+
+		_hud = new HUD();
 		r = new Random();
 
-		handler.addObject(new Player(WIDTH / 2 - 32, HEIGHT / 2 - 32, ID.Player));
-		handler.addObject(new BasicEnemy(WIDTH / 2 - 32, HEIGHT / 2 - 32, ID.BasicEnemy));
+		_handler.addObject(new Player(WIDTH / 2 - 32, HEIGHT / 2 - 32, ID.Player));
+		_handler.addObject(new BasicEnemy(WIDTH / 2 - 32, HEIGHT / 2 - 32, ID.BasicEnemy));
 	}
 
 	public synchronized void start() {
-		thread = new Thread(this);
-		thread.start();
+		_thread = new ThreadPool(1); // Single threaded
+		_thread.runTask(this);
+		// _thread.runTask(new ThreadTest()); // Thread Test
 		running = true;
 	}
 
 	public synchronized void stop() {
 		try {
-			thread.join();
+			_thread.join();
 			running = false;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -77,8 +88,8 @@ public class Main extends Canvas implements Runnable {
 	}
 
 	private void tick() {
-		handler.tick();
-		hud.tick();
+		_handler.tick();
+		_hud.tick();
 	}
 
 	private void render() {
@@ -93,8 +104,8 @@ public class Main extends Canvas implements Runnable {
 		g.setColor(Color.black);
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 
-		handler.render(g);
-		hud.render(g);
+		_handler.render(g);
+		_hud.render(g);
 
 		g.dispose();
 		bs.show();
